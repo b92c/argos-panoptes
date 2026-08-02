@@ -35,7 +35,7 @@
 
 ---
 
-### - [ ] Tarefa 001 — Criar estrutura de diretórios do projeto
+### - [x] Tarefa 001 — Criar estrutura de diretórios do projeto
 **Label:** `INFRA`
 **Descrição:** Criar toda a árvore de diretórios do projeto seguindo a arquitetura limpa proposta para a aplicação Python com FastAPI e LangGraph.
 
@@ -49,7 +49,7 @@
 
 ---
 
-### - [ ] Tarefa 002 — Configurar dependências e empacotamento com Poetry
+### - [x] Tarefa 002 — Configurar dependências e empacotamento com Poetry
 **Label:** `INFRA`
 **Dependência:** 🔗 Tarefa 001
 **Descrição:** Configurar o arquivo `pyproject.toml` usando o Poetry para gerenciar as dependências do projeto, linter/formatter (Ruff) e gerador de tipos (Mypy).
@@ -63,16 +63,16 @@
 
 ---
 
-### - [ ] Tarefa 003 — Configurar ferramentas de qualidade de código (Ruff, Mypy)
+### - [x] Tarefa 003 — Configurar ferramentas de qualidade de código (Ruff, Mypy)
 **Label:** `INFRA`
 **Dependência:** 🔗 Tarefa 002
 **Descrição:** Adicionar as configurações estritas no `pyproject.toml` para o Ruff (linter e formatter) e Mypy (type checker) para garantir qualidade no nível Staff.
 
 **Checklist:**
-- [ ] Configurar Ruff no `pyproject.toml` com regras estritas: `E`, `F`, `I`, `N`, `UP`, `B`, `A`, `C4`, `T20`, `RET`, `SIM`, `ARG`, `PTH`, `ERA`, `PL`, `RUF`
-- [ ] Configurar Mypy em modo estrito (`strict = true`, `disallow_untyped_defs = true`, `warn_unused_ignores = true`)
-- [ ] Criar arquivo `.vscode/settings.json` com configurações de format on save utilizando o Ruff
-- [ ] Rodar `poetry run ruff check .` e `poetry run mypy src/` e verificar que executam sem erros
+- [x] Configurar Ruff no `pyproject.toml` com regras estritas: `E`, `F`, `I`, `N`, `UP`, `B`, `A`, `C4`, `T20`, `RET`, `SIM`, `ARG`, `PTH`, `ERA`, `PL`, `RUF`
+- [x] Configurar Mypy em modo estrito (`strict = true`, `disallow_untyped_defs = true`, `warn_unused_ignores = true`)
+- [x] Criar arquivo `.vscode/settings.json` com configurações de format on save utilizando o Ruff
+- [x] Rodar `poetry run ruff check .` e `poetry run mypy src/` e verificar que executam sem erros
 
 ---
 

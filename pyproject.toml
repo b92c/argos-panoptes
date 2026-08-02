@@ -23,7 +23,6 @@ dependencies = [
     "structlog (>=26.1.0,<27.0.0)"
 ]
 
-
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
@@ -38,3 +37,33 @@ dev = [
     "mypy (>=2.3.0,<3.0.0)",
     "httpx (>=0.28.1,<0.29.0)"
 ]
+
+[tool.ruff]
+target-version = "py314"
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # Pyflakes
+    "I",   # isort
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "A",   # flake8-builtins
+    "C4",  # flake8-comprehensions
+    "T20", # flake8-print
+    "RET", # flake8-return
+    "SIM", # flake8-simplify
+    "ARG", # flake8-unused-arguments
+    "PTH", # flake8-use-pathlib
+    "ERA", # eradicate
+    "PL",  # Pylint
+    "RUF", # Ruf-specific rules
+]
+
+[tool.mypy]
+python_version = "3.14"
+strict = true
+disallow_untyped_defs = true
+warn_unused_ignores = true
