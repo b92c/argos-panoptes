@@ -20,20 +20,20 @@ A arquitetura do Argos Panoptes é baseada em um orquestrador central (Superviso
 
 ```mermaid
 graph TD
-    Client[Cliente/Frontend] <-->|WebSocket JSON| WSGateway[WebSocket Gateway\nFastAPI]
+    Client[Cliente/Frontend] <-->|WebSocket JSON| WSGateway["WebSocket Gateway<br/>FastAPI"]
     
     WSGateway -->|Stream Eventos| IntentClassifier[Intent Classifier Node]
     
     subgraph Orquestração LangGraph
-        IntentClassifier --> Supervisor[Supervisor Node\nOrchestrator]
+        IntentClassifier --> Supervisor["Supervisor Node<br/>Orchestrator"]
         
-        Supervisor -->|Command| HostingAgent[HostingAgent\nSubgraph]
-        Supervisor -->|Command| VPSAgent[VPSAgent\nSubgraph]
-        Supervisor -->|Command| DedicatedAgent[DedicatedAgent\nSubgraph]
-        Supervisor -->|Command| EmailAgent[EmailAgent\nSubgraph]
-        Supervisor -->|Command| SiteBuilderAgent[SiteBuilderAgent\nSubgraph]
-        Supervisor -->|Command| DNSAgent[DNSAgent\nSubgraph]
-        Supervisor -->|Command| BillingAgent[BillingAgent\nSubgraph]
+        Supervisor -->|Command| HostingAgent["HostingAgent<br/>Subgraph"]
+        Supervisor -->|Command| VPSAgent["VPSAgent<br/>Subgraph"]
+        Supervisor -->|Command| DedicatedAgent["DedicatedAgent<br/>Subgraph"]
+        Supervisor -->|Command| EmailAgent["EmailAgent<br/>Subgraph"]
+        Supervisor -->|Command| SiteBuilderAgent["SiteBuilderAgent<br/>Subgraph"]
+        Supervisor -->|Command| DNSAgent["DNSAgent<br/>Subgraph"]
+        Supervisor -->|Command| BillingAgent["BillingAgent<br/>Subgraph"]
         
         HostingAgent --> Synthesizer[Synthesizer Node]
         VPSAgent --> Synthesizer
@@ -47,8 +47,8 @@ graph TD
     end
     
     subgraph Assíncrono & Estado
-        Scheduler[Background Task Scheduler\nCelery/Arq]
-        StateStore[(State Store\nPostgreSQL + Redis)]
+        Scheduler["Background Task Scheduler<br/>Celery/Arq"]
+        StateStore[("State Store<br/>PostgreSQL + Redis")]
     end
     
     Orquestração LangGraph <..> StateStore
