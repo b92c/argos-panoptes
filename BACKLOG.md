@@ -55,11 +55,11 @@
 **Descrição:** Configurar o arquivo `pyproject.toml` usando o Poetry para gerenciar as dependências do projeto, linter/formatter (Ruff) e gerador de tipos (Mypy).
 
 **Checklist:**
-- [ ] Criar `pyproject.toml` na raiz do projeto com Poetry
-- [ ] Configurar dependências de runtime: `fastapi`, `uvicorn`, `langgraph`, `langchain`, `langchain-openai`, `pydantic`, `pydantic-settings`, `asyncpg`, `sqlalchemy`, `redis`, `apscheduler`, `structlog`
-- [ ] Configurar dependências de desenvolvimento: `pytest`, `pytest-asyncio`, `pytest-mock`, `pytest-cov`, `ruff`, `mypy`, `httpx`
-- [ ] Executar `poetry install` e criar o virtual environment (`.venv`)
-- [ ] Validar que Ruff e Mypy estão instalados no virtualenv executando `ruff --version` e `mypy --version`
+- [x] Criar `pyproject.toml` na raiz do projeto com Poetry
+- [x] Configurar dependências de runtime: `fastapi`, `uvicorn`, `langgraph`, `langchain`, `langchain-openai`, `pydantic`, `pydantic-settings`, `asyncpg`, `sqlalchemy`, `redis`, `apscheduler`, `structlog`
+- [x] Configurar dependências de desenvolvimento: `pytest`, `pytest-asyncio`, `pytest-mock`, `pytest-cov`, `ruff`, `mypy`, `httpx`
+- [x] Executar `poetry install` e criar o virtual environment (`.venv`)
+- [x] Validar que Ruff e Mypy estão instalados no virtualenv executando `ruff --version` e `mypy --version`
 
 ---
 
