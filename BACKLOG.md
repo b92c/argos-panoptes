@@ -40,12 +40,12 @@
 **Descrição:** Criar toda a árvore de diretórios do projeto seguindo a arquitetura limpa proposta para a aplicação Python com FastAPI e LangGraph.
 
 **Checklist:**
-- [ ] Criar pasta `src/argos/`
-- [ ] Criar subpastas em `src/argos/`: `api/`, `core/`, `agents/`, `tools/`, `models/`, `services/`, `tasks/`, `utils/`
-- [ ] Criar pastas para cada agente em `src/argos/agents/`: `classifier/`, `supervisor/`, `synthesizer/`, `hosting/`, `vps/`, `dedicated/`, `email/`, `dns/`, `site_builder/`, `billing/`
-- [ ] Adicionar arquivos `__init__.py` vazios em todas as pastas e subpastas para marcar os pacotes Python
-- [ ] Criar estrutura do diretório `tests/` com subpastas `unit/`, `integration/` e `e2e/`
-- [ ] Criar pasta `docs/` e garantir que `roadmap.md`, `technical-specification.md` e `implementation-plan.md` estejam organizados lá
+- [x] Criar pasta `src/argos/`
+- [x] Criar subpastas em `src/argos/`: `api/`, `core/`, `agents/`, `tools/`, `models/`, `services/`, `tasks/`, `utils/`
+- [x] Criar pastas para cada agente em `src/argos/agents/`: `classifier/`, `supervisor/`, `synthesizer/`, `hosting/`, `vps/`, `dedicated/`, `email/`, `dns/`, `site_builder/`, `billing/`
+- [x] Adicionar arquivos `__init__.py` vazios em todas as pastas e subpastas para marcar os pacotes Python
+- [x] Criar estrutura do diretório `tests/` com subpastas `unit/`, `integration/` e `e2e/`
+- [x] Criar pasta `docs/` e garantir que `roadmap.md`, `technical-specification.md` e `implementation-plan.md` estejam organizados lá
 
 ---
 
