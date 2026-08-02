@@ -4,7 +4,7 @@
 - **Nome do projeto**: Argos Panoptes (referência ao gigante da mitologia grega com 100 olhos - que tudo vê)
 - **Propósito**: Sistema multi-agentes construído com LangGraph para atendimento automatizado de suporte ao cliente de uma empresa de hospedagem de sites. O sistema atua de forma proativa e reativa.
 - **Stack**: Python 3.12+, LangGraph, FastAPI, WebSocket, PostgreSQL, Redis.
-- **Domínios atendidos**: 
+- **Domínios atendidos**:
   - Hospedagem Compartilhada
   - VPS (Virtual Private Server)
   - Servidores Dedicados
@@ -21,12 +21,12 @@ A arquitetura do Argos Panoptes é baseada em um orquestrador central (Superviso
 ```mermaid
 graph TD
     Client[Cliente/Frontend] <-->|WebSocket JSON| WSGateway["WebSocket Gateway<br/>FastAPI"]
-    
+
     WSGateway -->|Stream Eventos| IntentClassifier[Intent Classifier Node]
-    
+
     subgraph Orquestração LangGraph
         IntentClassifier --> Supervisor["Supervisor Node<br/>Orchestrator"]
-        
+
         Supervisor -->|Command| HostingAgent["HostingAgent<br/>Subgraph"]
         Supervisor -->|Command| VPSAgent["VPSAgent<br/>Subgraph"]
         Supervisor -->|Command| DedicatedAgent["DedicatedAgent<br/>Subgraph"]
@@ -34,7 +34,7 @@ graph TD
         Supervisor -->|Command| SiteBuilderAgent["SiteBuilderAgent<br/>Subgraph"]
         Supervisor -->|Command| DNSAgent["DNSAgent<br/>Subgraph"]
         Supervisor -->|Command| BillingAgent["BillingAgent<br/>Subgraph"]
-        
+
         HostingAgent --> Synthesizer[Synthesizer Node]
         VPSAgent --> Synthesizer
         DedicatedAgent --> Synthesizer
@@ -42,25 +42,25 @@ graph TD
         SiteBuilderAgent --> Synthesizer
         DNSAgent --> Synthesizer
         BillingAgent --> Synthesizer
-        
+
         Synthesizer --> Supervisor
     end
-    
+
     subgraph Assíncrono & Estado
         Scheduler["Background Task Scheduler<br/>Celery/Arq"]
         StateStore[("State Store<br/>PostgreSQL + Redis")]
     end
-    
+
     Orquestração LangGraph <..> StateStore
     Scheduler <..> StateStore
-    
+
     subgraph APIs Externas
         cPanel[cPanel/WHM API]
         Extendify[Extendify API]
         WHMCS[WHMCS Billing]
         CloudLinux[CloudLinux API]
     end
-    
+
     HostingAgent --> cPanel
     EmailAgent --> cPanel
     BillingAgent --> WHMCS
@@ -133,7 +133,7 @@ class ConversationContext(BaseModel):
     current_active_agent: str | None = None
     is_human_escalated: bool = False
     pending_user_confirmation: bool = False
-    
+
 class AgentState(TypedDict):
     """
     Estado Principal do Grafo (StateGraph).
@@ -141,19 +141,19 @@ class AgentState(TypedDict):
     """
     # Histórico de mensagens. O redutor 'add_messages' garante o append seguro.
     messages: Annotated[list[AnyMessage], add_messages]
-    
+
     # Perfil injetado na inicialização da conexão
     customer: CustomerProfile
-    
+
     # Intenção atual para roteamento
     intent: IntentClassification | None
-    
+
     # Lista de resultados de ferramentas executadas (acumulativo)
     tool_results: Annotated[list[ToolExecutionResult], operator.add]
-    
+
     # Respostas finais geradas pelos agentes
     agent_responses: Annotated[list[AgentResponse], operator.add]
-    
+
     # Contexto geral de controle de fluxo
     context: ConversationContext
 ```
