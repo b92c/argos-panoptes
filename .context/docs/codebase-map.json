@@ -1,0 +1,142 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-08-01T00:00:00.000Z",
+  "stack": {
+    "primaryLanguage": "python",
+    "languages": ["python"],
+    "frameworks": ["langgraph", "fastapi", "pydantic"],
+    "buildTools": ["pip", "pyproject.toml"],
+    "testFrameworks": ["pytest", "pytest-asyncio"],
+    "packageManager": "pip",
+    "isMonorepo": false,
+    "hasDocker": true,
+    "hasCI": true
+  },
+  "structure": {
+    "totalFiles": 0,
+    "topDirectories": [
+      {
+        "name": "src/argos/core",
+        "description": "Core graph logic, state schemas, and agent registry",
+        "files": ["state.py", "graph.py", "registry.py"]
+      },
+      {
+        "name": "src/argos/agents/classifier",
+        "description": "Intent classification with structured LLM output",
+        "files": ["node.py", "prompts.py"]
+      },
+      {
+        "name": "src/argos/agents/supervisor",
+        "description": "Orchestrator that routes to specialized agents",
+        "files": ["node.py", "prompts.py"]
+      },
+      {
+        "name": "src/argos/agents/synthesizer",
+        "description": "Merges results from multiple agents",
+        "files": ["node.py", "prompts.py"]
+      },
+      {
+        "name": "src/argos/agents/hosting",
+        "description": "Shared hosting support deep agent subgraph",
+        "files": ["graph.py", "nodes.py", "tools.py", "prompts.py"]
+      },
+      {
+        "name": "src/argos/agents/vps",
+        "description": "VPS support deep agent subgraph",
+        "files": ["graph.py", "nodes.py", "tools.py", "prompts.py"]
+      },
+      {
+        "name": "src/argos/agents/dedicated",
+        "description": "Dedicated server support deep agent subgraph",
+        "files": ["graph.py", "nodes.py", "tools.py", "prompts.py"]
+      },
+      {
+        "name": "src/argos/agents/email",
+        "description": "Email management deep agent subgraph",
+        "files": ["graph.py", "nodes.py", "tools.py", "prompts.py"]
+      },
+      {
+        "name": "src/argos/agents/dns",
+        "description": "DNS and SSL management deep agent subgraph",
+        "files": ["graph.py", "nodes.py", "tools.py", "prompts.py"]
+      },
+      {
+        "name": "src/argos/agents/site_builder",
+        "description": "Site creation deep agent (Extendify integration)",
+        "files": ["graph.py", "nodes.py", "tools.py", "prompts.py"]
+      },
+      {
+        "name": "src/argos/agents/billing",
+        "description": "Billing deep agent (WHMCS integration)",
+        "files": ["graph.py", "nodes.py", "tools.py", "prompts.py"]
+      },
+      {
+        "name": "src/argos/tools",
+        "description": "External API wrapper tools",
+        "files": ["cpanel.py", "whm.py", "whmcs.py", "extendify.py", "base.py"]
+      },
+      {
+        "name": "src/argos/api",
+        "description": "FastAPI application, WebSocket, and REST endpoints",
+        "files": ["app.py", "websocket.py", "rest.py", "middleware.py"]
+      },
+      {
+        "name": "src/argos/services",
+        "description": "Infrastructure services (LLM, DB, cache)",
+        "files": ["llm.py", "database.py", "cache.py", "knowledge_base.py"]
+      },
+      {
+        "name": "src/argos/tasks",
+        "description": "Background async task routines",
+        "files": ["scheduler.py", "health_monitor.py", "ssl_checker.py", "usage_alerts.py", "backup_verifier.py"]
+      },
+      {
+        "name": "src/argos/models",
+        "description": "Pydantic data models",
+        "files": ["customer.py", "ticket.py", "server.py", "conversation.py"]
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Intent Classifier",
+      "path": "src/argos/agents/classifier/node.py",
+      "description": "Classifies customer intent using structured LLM output and routes to appropriate handler",
+      "exports": ["classify_intent", "IntentClassification"]
+    },
+    {
+      "name": "Supervisor",
+      "path": "src/argos/agents/supervisor/node.py",
+      "description": "Orchestrates deep agents based on classified intent using Command primitive",
+      "exports": ["supervisor"]
+    },
+    {
+      "name": "Synthesizer",
+      "path": "src/argos/agents/synthesizer/node.py",
+      "description": "Merges results from multiple agents using Generator-Critic-Revise pattern",
+      "exports": ["synthesizer"]
+    },
+    {
+      "name": "Main Graph",
+      "path": "src/argos/core/graph.py",
+      "description": "Assembles all agents, subgraphs, and edges into the main StateGraph",
+      "exports": ["graph", "build_graph"]
+    },
+    {
+      "name": "WebSocket Handler",
+      "path": "src/argos/api/websocket.py",
+      "description": "FastAPI WebSocket endpoint with streaming support via astream_events",
+      "exports": ["websocket_endpoint"]
+    }
+  ],
+  "dataFlow": [
+    {"step": 1, "description": "Client connects via WebSocket to /ws/{thread_id}"},
+    {"step": 2, "description": "Message received and passed to Intent Classifier node"},
+    {"step": 3, "description": "Classifier produces IntentClassification with structured output"},
+    {"step": 4, "description": "Simple intents routed to Level 1 Agent; complex to Supervisor"},
+    {"step": 5, "description": "Supervisor delegates to appropriate Deep Agent subgraph"},
+    {"step": 6, "description": "Deep Agent executes tools and produces response"},
+    {"step": 7, "description": "Response streamed back to client via WebSocket"},
+    {"step": 8, "description": "State checkpointed to PostgreSQL for persistence"}
+  ]
+}
